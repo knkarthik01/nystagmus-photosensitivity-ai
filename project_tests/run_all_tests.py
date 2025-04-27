@@ -1,4 +1,7 @@
 # run_all_tests.py
+import sys
+import os
+sys.path.insert(0, os.getcwd())
 
 from project_tests import test_model
 from project_tests import test_recommendation

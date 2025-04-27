@@ -9,7 +9,7 @@ def test_cli_demo():
         "python", "demo/demo_cli.py",
         "--brightness", "750",
         "--variance", "5",
-        "--model_path", "dual_branch_cnn.pth"
+        "--model_path", "models/dual_branch_cnn.pth"
     ]
     try:
         result = subprocess.run(cmd, check=True, capture_output=True, text=True)
