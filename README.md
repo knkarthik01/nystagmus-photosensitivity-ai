@@ -83,6 +83,12 @@ Run all tests from the project root:
 python project_tests/run_all_tests.py
 ```
 
+## 🧪 Full Testing Guide
+
+For detailed testing instructions, see [TESTING.md](./TESTING.md).
+
+---
+
 ✅ Ensures model, recommendation engine, and CLI app work reliably.
 
 ---
@@ -94,12 +100,6 @@ python project_tests/run_all_tests.py
    - Ensure model (`dual_branch_cnn.pth`) is trained and available.
 - **Colab Usage**:  
    - Save copies to Drive if metadata issues occur when syncing with GitHub.
-
----
-
-## 🧪 Full Testing Guide
-
-For detailed testing instructions, see [TESTING.md](./TESTING.md).
 
 ---
 
