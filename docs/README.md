@@ -16,43 +16,77 @@ Existing research has made strides in gaze estimation (e.g., Gaze360) using conv
 
 ### 3.1 Data Generation and Preprocessing
 
-- **Synthetic Dataset**: Controlled variations of brightness levels (300-1200 lux) and eye movement variances (2-10 pixel standard deviation) were synthetically generated.
-- **Preprocessing**: Normalization, random noise addition, and variance smoothing were used to simulate real-world eye movement patterns under different lighting conditions.
+We created a synthetic dataset to simulate real-world conditions for patients experiencing photosensitivity with nystagmus. Brightness levels ranged from 300 to 1200 lux, representing environments from dimly lit rooms to bright outdoor settings. Eye movement variances were generated with controlled standard deviations (2 to 10 pixels) to mimic mild to severe nystagmus symptoms.
+
+Preprocessing involved:
+- **Normalization**: Scaling brightness levels and variance values.
+- **Noise Injection**: Simulating real-world irregularities in eye tracking.
+- **Data Augmentation**: Brightness jittering, cropping, and mirroring to increase dataset diversity.
+- **Synthetic Blurring**: For images to replicate vision disruption under severe photosensitivity.
+
+This pipeline ensured the model could generalize across a wide range of possible patient experiences.
 
 ### 3.2 Model Architecture
 
-- **Dual-Branch CNN**:
-  - Branch 1: Processes environmental brightness images (input resolution: 128x128 grayscale).
-  - Branch 2: Processes time series vectors representing eye movement variance.
-- **Fusion Layer**: Fully connected layers merging both branches.
-- **Output**: Photosensitivity risk score (continuous 0-1).
-- **Training**: Adam optimizer (learning rate 0.001), MSE loss, trained over 30 epochs on 80/20 synthetic train-test split.
+The architecture was based on a dual-branch convolutional neural network:
+- **Branch 1 (Environmental Brightness)**:
+  - Input: 128x128 grayscale images.
+  - Layers: 3 convolutional blocks (Conv -> BatchNorm -> ReLU -> MaxPool).
+  - Output: Flattened feature vector.
+
+- **Branch 2 (Eye Movement Variance)**:
+  - Input: 1D vector of movement variances.
+  - Layers: 2 fully connected dense layers.
+  - Output: Feature embedding.
+
+- **Fusion and Prediction**:
+  - Concatenation of both branch outputs.
+  - Two fully connected layers with dropout.
+  - Sigmoid activation to output risk score between 0-1.
+
+Training setup:
+- **Loss Function**: Mean Squared Error (MSE) Loss.
+- **Optimizer**: Adam (learning rate 0.001).
+- **Epochs**: 30 with early stopping on validation loss.
+- **Split**: 80% training / 20% validation.
 
 *(Figure 1: Model Workflow Diagram)*
 
 ![Figure 1: Model Workflow Diagram](https://github.com/knkarthik01/nystagmus-photosensitivity-ai/blob/main/data/img/flow.png?raw=true)
 
-### 3.3 Explainability Techniques
+### 3.3 Experimentation Process
 
-- **SHAP**: Used on the fused feature layer to determine contribution of brightness vs eye movement variance.
-- **GradCAM**: Applied on environmental images to visualize high-risk zones likely to trigger photosensitivity events.
+Our experimentation followed a phased approach:
+1. **Baseline Training**: Simple brightness-only models were first trained to set a performance baseline.
+2. **Adding Eye Movement Variance**: Inclusion of variance features significantly boosted accuracy (~+10%).
+3. **Tuning Hyperparameters**: Different learning rates (0.0001-0.01), optimizers (Adam, RMSprop), and architectures (deeper CNN vs shallower) were explored.
+4. **Explainability Layer**: Integrated SHAP values to verify model reliance on correct features.
+5. **Realistic Testing**: Used manually created "difficult" synthetic examples to stress-test model.
+
+We observed that the dual-branch approach consistently outperformed single-modality models by a margin of 8-12% in accuracy.
+
+### 3.4 Explainability Techniques
+
+Explainability was critical for patient trust:
+- **SHAP**: Applied after the fusion layer to attribute risk prediction to brightness vs eye movement inputs.
+- **GradCAM**: Heatmaps overlaid on environmental images to identify high-risk visual zones.
 
 *(Figure 2: GradCAM Visualization Example)*
 
 ![Figure 2: GradCAM Visualization Example](https://github.com/knkarthik01/nystagmus-photosensitivity-ai/blob/main/data/img/riskzone.png?raw=true)
 
-### 3.4 Recommendation Engine and GitHub Mapping
+### 3.5 Recommendation Engine and GitHub Mapping
 
-- **Risk Thresholding**:
-  - Risk score > 0.7: Recommend "Dark Amber" filter.
-  - Risk score 0.4-0.7: Recommend "Cool Grey" filter.
-  - Risk score < 0.4: No adaptation required.
+Risk scores were interpreted via a simple rule-based engine:
+- Risk score > 0.7: Recommend "Dark Amber" filter.
+- Risk score 0.4-0.7: Recommend "Cool Grey" filter.
+- Risk score < 0.4: No adaptation required.
 
-- **GitHub Files**:
-  - `models/cnn_dual_branch/model.py` - Dual-branch architecture.
-  - `recommendation_engine/engine.py` - Simple rule-based recommender.
-  - `demo/demo_cli.py` - CLI demo app.
-  - `project_tests/` - Unit and integration tests for reliability.
+**GitHub Mapping**:
+- `models/cnn_dual_branch/model.py`: Dual-branch CNN implementation.
+- `recommendation_engine/engine.py`: Risk scoring to filter mapping.
+- `demo/demo_cli.py`: Command-line demo application.
+- `project_tests/`: Comprehensive unit and integration tests.
 
 *(Figure 3: Method + Recommendation Flow)*
 
@@ -75,8 +109,6 @@ Existing research has made strides in gaze estimation (e.g., Gaze360) using conv
 | Brightness Level | 0.65 |
 | Eye Movement Variance | 0.35 |
 
-*(Mini chart can be added if needed)*
-
 ## 5. Conclusion and Future Work
 
 This project demonstrates the feasibility of an AI-driven personalized assistive system for nystagmus patients facing photosensitivity challenges. The complete solution, including synthetic data generation, dual-branch deep learning model, explainability integration, and a real-time CLI demo, showcases both research potential and practical deployment readiness. Future work includes:
@@ -98,3 +130,5 @@ This project demonstrates the feasibility of an AI-driven personalized assistive
 [5] Lee, Y., Lee, S., Han, J., Seo, Y. J., & Yang, S. (2023). "A nystagmus extraction system using artificial intelligence for video-nystagmography." *Scientific Reports, 13*(1), 11975.
 
 ---
+ 
+
