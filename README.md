@@ -52,7 +52,7 @@ nystagmus-photosensitivity-ai/
    python project_tests/run_all_tests.py
    ```
 
-**Note**:  End to End model implementation is available in `model_implementation_end_to_end.ipynb`   → Provides Visibility of end to end in notebook (Google Colab)
+**Note**:  End to End model implementation is available in `[model_implementation_end_to_end.ipynb](https://github.com/knkarthik01/nystagmus-photosensitivity-ai/blob/main/model_implementation_end_to_end.ipynb)`   → Provides Visibility of end to end in notebook (Google Colab)
 
 ---
 
