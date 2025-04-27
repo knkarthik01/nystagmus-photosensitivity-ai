@@ -41,9 +41,43 @@ nystagmus-photosensitivity-ai/
    pip install -r requirements.txt
    ```
 
-3. **Open and run notebooks** in `notebooks/` folder (coming soon).
+3. **Open and run notebooks** in the `notebooks/` folder.
 
 4. **View demo** (basic CLI coming soon in `demo/`).
+
+---
+
+## 📚 Working with Notebooks
+
+This project uses Google Colab for development.  
+Follow these best practices:
+
+### 1. Setting up Environment
+- Always run **`0_get_started.ipynb`** first.
+- It clones the GitHub repo and installs required packages from `requirements.txt`.
+
+### 2. Running the Workflow
+| Step | Notebook | Purpose |
+|:---|:---|:---|
+| 1 | `1_data_preprocessing.ipynb` | Generate synthetic brightness and eye-movement dataset |
+| 2 | `Manual Step` | **Download `preprocessed_data.csv`** and upload it to GitHub under `/data/preprocessed/` |
+| 3 | `2_model_training.ipynb` | Train Dual-Branch CNN model using synthetic data |
+| 4 | `3_explainability.ipynb` | Apply SHAP explainability on trained model |
+
+> ⚡ **Note:** Always clear outputs before pushing notebooks back to GitHub for clean rendering.
+
+---
+
+## 📂 Important Notes
+- **CSV Handling**:  
+   - After generating `preprocessed_data.csv`, **download and upload manually** to GitHub under `/data/preprocessed/`.
+   - Update notebook code paths accordingly if needed.
+
+- **Notebook Cleanliness**:  
+   - For GitHub uploads, ensure notebooks have **cleared outputs** to avoid rendering errors.
+
+- **Colab Tip**:  
+   - Saving directly from Colab to GitHub sometimes embeds unwanted metadata. Prefer downloading first if needed.
 
 ---
 
