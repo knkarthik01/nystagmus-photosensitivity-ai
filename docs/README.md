@@ -102,12 +102,45 @@ Risk scores were interpreted via a simple rule-based engine:
   - **Predicted Risk**: 0.64 (Moderate Risk)
   - **Recommended Filter**: "Cool Grey"
 
+- **Risk Score Visualization**:
+
+*(Figure 4: Risk Score by Brightness and Eye Movement Variance)*
+
+![Figure 4: Risk Score Visualization](https://github.com/knkarthik01/nystagmus-photosensitivity-ai/blob/main/data/img/riskfactors.png?raw=true)
+
 - **Feature Importance via SHAP**:
 
-| Feature | SHAP Importance Score |
-|:---|:---|
-| Brightness Level | 0.65 |
-| Eye Movement Variance | 0.35 |
+*(Figure 5: SHAP Feature Importance)*
+
+![Figure 5: SHAP Feature Importance](https://github.com/knkarthik01/nystagmus-photosensitivity-ai/blob/main/data/img/feature_importance.png?raw=true)
+
+*(Figure 6: SHAP Summary Plot)*
+
+![Figure 6: SHAP Summary Plot](https://github.com/knkarthik01/nystagmus-photosensitivity-ai/blob/main/data/img/SHAPvalue.png?raw=true)
+
+- **Base Filter Recommendations**:
+
+| Brightness | Eye Movement Variance | Suggested Filter | Note |
+|:---|:---|:---|:---|
+| High | High | Dark Amber | Maximum protection recommended |
+| High | Low | Neutral Density | Stable eye movement, reduce brightness |
+| Medium | High | Cool Grey | Moderate brightness + instability |
+| Medium | Low | Light Grey | Moderate brightness + stable vision |
+| Low | High/Low | No Filter | Natural vision sufficient |
+
+- **Personalized Recommendations After User Feedback**:
+
+| Brightness | Eye Movement Variance | Personalized Filter | Note |
+|:---|:---|:---|:---|
+| High | High | Dark Grey | Cooler preference, maximum protection |
+| High | Low | Neutral Density | Stable, minor adjustment |
+| Medium | High | Cool Grey | Cooler preference for strain reduction |
+| Medium | Low | Medium Amber | Warmer tone, increased intensity |
+| Low | High/Low | No Filter | Natural vision sufficient |
+
+- **Feedback Simulation Summary**:
+  - Updated profile: preference for cooler filters, sensitivity +0.175 adjustment.
+  - Real-time adaptation of recommendations based on dynamic user input.
 
 ## 5. Conclusion and Future Work
 
