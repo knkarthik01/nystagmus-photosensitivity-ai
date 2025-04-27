@@ -1,8 +1,8 @@
 # run_all_tests.py
 
-from tests import test_model
-from tests import test_recommendation
-from tests import test_cli
+from project_tests import test_model
+from project_tests import test_recommendation
+from project_tests import test_cli
 
 if __name__ == "__main__":
     print("Running model tests...")
