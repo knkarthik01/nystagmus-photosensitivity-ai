@@ -14,6 +14,10 @@ def test_recommendation_light_grey():
     assert rec['filter'] == 'Light Grey', "Expected Light Grey filter"
     print("✅ test_recommendation_light_grey passed.")
 
-if __name__ == "__main__":
+
+def run_all_tests():
     test_recommendation_dark_amber()
     test_recommendation_light_grey()
+
+if __name__ == "__main__":
+    run_all_tests()

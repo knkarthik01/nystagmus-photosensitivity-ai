@@ -29,6 +29,9 @@ def test_dummy_training_step():
     assert loss.item() > 0, "Loss should be greater than zero"
     print("✅ test_dummy_training_step passed.")
 
-if __name__ == "__main__":
+def run_all_tests():
     test_model_forward_pass()
     test_dummy_training_step()
+
+if __name__ == "__main__":
+    run_all_tests()

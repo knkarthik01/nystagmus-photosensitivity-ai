@@ -18,5 +18,8 @@ def test_cli_demo():
     except Exception as e:
         print("❌ test_cli_demo failed:", e)
 
-if __name__ == "__main__":
+def run_all_tests():
     test_cli_demo()
+
+if __name__ == "__main__":
+    run_all_tests()
