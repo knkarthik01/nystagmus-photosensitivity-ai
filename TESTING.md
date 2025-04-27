@@ -62,7 +62,7 @@ It will automatically:
 You can also test the CLI demo manually:
 
 ```bash
-python demo/demo_cli.py --brightness 750 --variance 5 --model_path dual_branch_cnn.pth
+python demo/demo_cli.py --brightness 750 --variance 5 --model_path models/dual_branch_cnn.pth
 ```
 
 ✅ Expected output:
