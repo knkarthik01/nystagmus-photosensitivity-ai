@@ -1,1 +1,5 @@
-# Requirements Placeholder
+torch
+shap
+matplotlib
+opencv-python
+scikit-learn
