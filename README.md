@@ -97,6 +97,12 @@ python project_tests/run_all_tests.py
 
 ---
 
+## 🧪 Full Testing Guide
+
+For detailed testing instructions, see [TESTING.md](./TESTING.md).
+
+---
+
 ## 📊 Key Features
 
 - 🧠 **Dual-Branch CNN**: Processes environmental brightness + eye movement variance
