@@ -130,7 +130,7 @@ Running the Web Demo
 #### Install Streamlit:
 pip install streamlit
 
-#### Launch the demo:
+#### (Optional)Launch the demo:
 streamlit run demo/web_demo.py
 
 Open your browser to the URL displayed in the terminal (typically http://localhost:8501)
