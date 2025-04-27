@@ -98,6 +98,3 @@ This project demonstrates the feasibility of an AI-driven personalized assistive
 [5] Lee, Y., Lee, S., Han, J., Seo, Y. J., & Yang, S. (2023). "A nystagmus extraction system using artificial intelligence for video-nystagmography." *Scientific Reports, 13*(1), 11975.
 
 ---
-
-*(Prepared in ACM two-column format. Figures linked from GitHub repository.)*
-
