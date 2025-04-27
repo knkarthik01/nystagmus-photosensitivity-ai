@@ -70,6 +70,73 @@ nystagmus-photosensitivity-ai/
 
 ---
 
+### Model Architecture
+Our dual-branch neural network processes both brightness levels and eye movement variance:
+
+#### Brightness Branch
+
+Processes environmental brightness information
+Feature extraction through multiple dense layers
+Outputs a 32-dimensional feature vector
+
+#### Eye Movement Branch
+
+Processes eye movement variance signals
+Parallel feature extraction
+Outputs a 32-dimensional feature vector
+
+#### Fusion Module
+
+Concatenates features from both branches (64 features total)
+Applies dropout for regularization
+Final sigmoid activation for risk prediction (0-1)
+
+#### Data Generation
+Our project uses both real and synthetic data:
+Synthetic Dataset
+
+Brightness levels: 100-1000 lux (indoor to bright outdoor)
+Eye movement variance: 0-10 (stable to severe nystagmus)
+Risk scores: Generated using a probabilistic model with noise
+
+#### Explainability
+Our system uses SHAP (SHapley Additive exPlanations) to provide transparent explanations for model predictions:
+SHAP Analysis
+
+Explains how each feature contributes to risk prediction
+Identifies whether brightness or eye movement has more impact
+Creates visualizations for patient and clinician understanding
+
+#### Recommendation Engine
+Our system provides personalized filter recommendations based on environmental factors and user preferences:
+
+ #### Base Recommendation System
+
+Analyzes brightness levels and eye movement patterns
+Recommends appropriate filters (Dark Amber, Cool Grey, Light Grey, etc.)
+Provides explanatory notes with each recommendation
+
+#### Personalized Recommendations
+
+Adapts to user preferences over time
+Accounts for personal sensitivity levels
+Adjusts filter types (warmer/cooler) based on feedback
+Modifies intensity based on user comfort
+
+#### Web Demo (Local)
+We provide a web-based demo using Streamlit:
+Running the Web Demo
+
+#### Install Streamlit:
+pip install streamlit
+
+#### Launch the demo:
+streamlit run demo/web_demo.py
+
+Open your browser to the URL displayed in the terminal (typically http://localhost:8501)
+
+
+
 ## 🧪 Testability
 
 This project includes fully integrated **testability** across core modules:
